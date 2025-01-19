@@ -69,9 +69,18 @@ th {
     %>
 
 	<h1>Gestione Pizzeria</h1>
-	<h2>
-		Benvenuto,
-		<%=utenteLoggato.getUsername() %></h2>
+	<div class="form-container" style="margin-top: 10px;">
+		<h2>
+			Benvenuto,
+			<%=utenteLoggato.getUsername() %>
+		
+		</h2>
+		<a href="login.jsp"><button type="button">Esci</button></a>
+	</div>
+	
+		
+
+		
 
 	<% if (errorMessage != null) { %>
 	<div class="error-message"><%= errorMessage %></div>
