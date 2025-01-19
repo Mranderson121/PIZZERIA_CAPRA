@@ -12,8 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.eclipse.persistence.annotations.Cache;
+import org.eclipse.persistence.annotations.CacheType;
+
 @Entity
 @Table(name = "utente")
+//@Cache(type = CacheType.NONE) // Disabilita la cache per questa entità
 public class Utente implements Serializable {
 
 	private static final long serialVersionUID = 8493841157339861670L;

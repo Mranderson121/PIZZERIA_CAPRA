@@ -21,7 +21,7 @@ public class Dao {
 		List<Utente> listaUtenti = new ArrayList<>();
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		TypedQuery<Utente> query = entityManager
-				.createQuery("select u from Utente u where u.username = :username and u.password = :password",
+				.createQuery("select u from Utente u LEFT JOIN FETCH u.pizze where u.username = :username and u.password = :password",
 						Utente.class)
 				.setParameter("username", username).setParameter("password", password);
 		listaUtenti = query.getResultList();
@@ -31,7 +31,7 @@ public class Dao {
 	public static Set<Impasto> getAllImpasti() {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		TypedQuery<Impasto> query = entityManager.createQuery("select i from Impasto i", Impasto.class);
-		return new HashSet<>(query.getResultList()); // Converte la List<Impasto> in un Set<Impasto>
+		return new HashSet<>(query.getResultList()); 
 	}
 
 	public static Set<Ingrediente> getAllIngredienti() {

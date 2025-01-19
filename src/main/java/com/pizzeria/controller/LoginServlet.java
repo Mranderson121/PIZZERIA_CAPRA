@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.pizzeria.dao.Dao;
 import com.pizzeria.model.Impasto;
 import com.pizzeria.model.Ingrediente;
+import com.pizzeria.model.Pizza;
 import com.pizzeria.model.Utente;
 
 public class LoginServlet extends HttpServlet {
@@ -31,7 +32,12 @@ public class LoginServlet extends HttpServlet {
 		if (utente != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("utenteLoggato", utente);
-
+			
+			Set<Pizza> pizze = utente.getPizze(); // Metodo supposto che ritorni le pizze dell'utente
+			System.out.println("Pizze dell'utente " + username + ":");
+			for (Pizza pizza : pizze) {
+				System.out.println(pizza); // Presupponendo che il metodo toString di Pizza stampi informazioni utili
+			}
 			Set<Impasto> impasti = Dao.getAllImpasti();
 			request.setAttribute("impasti", impasti);
 

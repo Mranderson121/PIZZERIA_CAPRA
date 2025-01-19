@@ -90,5 +90,10 @@ public class Pizza implements Serializable {
 	public void setIngredienti(Set<Ingrediente> ingredienti) {
 		this.ingredienti = ingredienti;
 	}
+	
+	@Override
+    public String toString() {
+        return nome;  // Per stampare il nome della pizza
+    }
 
 }
