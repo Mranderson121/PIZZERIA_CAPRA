@@ -6,8 +6,8 @@
 	<persistence-unit name="PIZZERIA">
     <!-- Provider di persistenza -->
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
-    
-
+    <non-jta-data-source>java:comp/env/jdbc/MyLocalDB</non-jta-data-source>
+	
     <class>com.pizzeria.model.Utente</class>
     <class>com.pizzeria.model.Pizza</class>
     <class>com.pizzeria.model.Ingrediente</class>
@@ -15,10 +15,6 @@
 
 
     <properties>
-        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/pizzeria-davide"/>
-        <property name="javax.persistence.jdbc.user" value="root"/>
-        <property name="javax.persistence.jdbc.password" value="Davide2000"/>
-        <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
         <property name="eclipselink.logging.level" value="FINE"/>
         <property name="eclipselink.jdbc.batch-writing" value="JDBC"/>
          <property name="eclipselink.cache.shared.default" value="false" />
