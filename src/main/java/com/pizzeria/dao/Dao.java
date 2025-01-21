@@ -39,7 +39,12 @@ public class Dao {
 		TypedQuery<Ingrediente> query = entityManager.createQuery("select i from Ingrediente i", Ingrediente.class);
 		return new HashSet<>(query.getResultList());
 	}
-
+	
+	public static List<Utente> getAllUtenti(){
+		EntityManager entityManager=  JPAUtil.getEntityManagerFactory().createEntityManager();
+		TypedQuery<Utente> query = entityManager.createQuery("select u from Utente",Utente.class);
+		return query.getResultList();
+	}
 	public static Pizza aggiungiPizza(String pizzaName, String impastoId, String[] ingredientiIds, int utenteId) {
 		EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 		entityManager.getTransaction().begin();
@@ -107,5 +112,5 @@ public class Dao {
 		entityManager.getTransaction().commit();
 		return modificaPizza;
 	}
-
+	
 }
