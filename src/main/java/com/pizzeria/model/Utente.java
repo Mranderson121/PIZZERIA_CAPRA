@@ -14,7 +14,10 @@ import javax.persistence.Table;
 
 import org.eclipse.persistence.annotations.Cache;
 import org.eclipse.persistence.annotations.CacheType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+@XmlRootElement
 @Entity
 @Table(name = "utente")
 //@Cache(type = CacheType.NONE) // Disabilita la cache per questa entità
@@ -32,7 +35,8 @@ public class Utente implements Serializable {
 
 	@Column(name = "password", nullable = false)
 	private String password;
-
+	
+	@XmlTransient 
 	@OneToMany(mappedBy = "utente", fetch = FetchType.EAGER)
 	private Set<Pizza> pizze;
 
