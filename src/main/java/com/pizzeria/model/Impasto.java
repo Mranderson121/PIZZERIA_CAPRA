@@ -8,11 +8,19 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
+@XmlRootElement
 @Entity
+@NamedQuery(
+	    name = "Impasto.getIdAndNome",
+	    query = "SELECT i.idImpasto, i.nome FROM Impasto i")
 @Table(name = "impasto")
 public class Impasto implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -24,7 +32,9 @@ public class Impasto implements Serializable {
 
 	@Column(name = "nome", nullable = false)
 	private String nome;
-
+	
+	@JsonManagedReference
+	@XmlTransient 
 	@OneToMany(mappedBy = "impasto")
 	private Set<Pizza> pizze;
 
