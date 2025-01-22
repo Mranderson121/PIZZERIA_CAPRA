@@ -3,6 +3,7 @@ package com.pizzeria.model;
 import java.io.Serializable;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -37,7 +38,7 @@ public class Utente implements Serializable {
 	private String password;
 	
 	@XmlTransient 
-	@OneToMany(mappedBy = "utente", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "utente", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
 	private Set<Pizza> pizze;
 
 	public Utente() {
