@@ -178,7 +178,7 @@ public class Dao {
 		entityManager.getTransaction().begin();
 		Impasto modificaImpasto = entityManager.find(Impasto.class, idImpasto);
 		if (modificaImpasto == null) {
-			return false; // Impasto non trovato
+			return false; 
 		}
 		modificaImpasto.setNome(impastoDTO.getNome());
 		entityManager.getTransaction().commit();
@@ -191,7 +191,7 @@ public class Dao {
 		entityManager.getTransaction().begin();
 		Ingrediente modificaIngrediente = entityManager.find(Ingrediente.class, idIngrediente);
 		if (modificaIngrediente == null) {
-			return false; // Impasto non trovato
+			return false; 
 		}
 		modificaIngrediente.setNome(ingrediente.getNome());
 		entityManager.getTransaction().commit();

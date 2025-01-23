@@ -20,12 +20,12 @@ public class DTODao {
 	public static Set<ImpastoDTO> getAllImpasti() {
 	    EntityManager entityManager = JPAUtil.getEntityManagerFactory().createEntityManager();
 	    
-	    // Query per selezionare i campi desiderati
+	    
 	    List<Object[]> results = entityManager.createQuery(
 	        "SELECT i.idImpasto, i.nome FROM Impasto i", Object[].class)
 	        .getResultList();
 	    
-	    // Trasformare i risultati in oggetti ImpastoDTO
+	   
 	    Set<ImpastoDTO> impastiDTO = results.stream()
 	        .map(result -> new ImpastoDTO((int) result[0], (String) result[1]))
 	        .collect(Collectors.toSet());
@@ -39,15 +39,15 @@ public class DTODao {
 			.getResultList();
 		List<UtenteDTO> utenti = new ArrayList<>();
 
-	    // Trasforma i risultati in UtenteDTO
+	
 	    for (Object[] result : results) {
 	        int id = (int) result[0];
 	        String username = (String) result[1];
 	        utenti.add(new UtenteDTO(id, username));
 	    }
 
-	    entityManager.close(); // Chiudi l'EntityManager
-	    return utenti; // 
+	    entityManager.close(); 
+	    return utenti; 
 		
 	}
 	
