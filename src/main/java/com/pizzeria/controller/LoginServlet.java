@@ -3,6 +3,7 @@ package com.pizzeria.controller;
 import java.io.IOException;
 import java.util.Set;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,10 +19,14 @@ import com.pizzeria.model.Utente;
 
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
+	
 	public LoginServlet() {
 		super();
 	}
+	
+	@EJB
+    private Dao Dao;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

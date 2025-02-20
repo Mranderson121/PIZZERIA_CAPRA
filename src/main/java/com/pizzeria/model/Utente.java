@@ -3,7 +3,6 @@ package com.pizzeria.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -12,9 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.eclipse.persistence.annotations.Cache;
-import org.eclipse.persistence.annotations.CacheType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -36,9 +32,9 @@ public class Utente implements Serializable {
 
 	@Column(name = "password", nullable = false)
 	private String password;
-	
-	@XmlTransient 
-	@OneToMany(mappedBy = "utente", fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+
+	@XmlTransient
+	@OneToMany(mappedBy = "utente", fetch = FetchType.EAGER)
 	private Set<Pizza> pizze;
 
 	public Utente() {

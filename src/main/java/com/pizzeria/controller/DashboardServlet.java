@@ -3,6 +3,7 @@ package com.pizzeria.controller;
 import java.io.IOException;
 import java.util.Set;
 
+import javax.ejb.EJB;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,8 @@ import com.pizzeria.model.Utente;
 
 public class DashboardServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
-
+    @EJB
+    private Dao Dao;
     public DashboardServlet() {
         super();
     }

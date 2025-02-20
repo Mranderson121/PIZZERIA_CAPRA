@@ -1,33 +1,31 @@
 package com.pizzeria.dto;
 
+import java.io.Serializable;
 import java.util.List;
-
+import java.util.Set;
+import java.util.stream.Collectors;
+import com.pizzeria.model.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import com.pizzeria.model.Impasto;
-
 @XmlRootElement
+public class UtenteDTO implements Serializable {
 
-
-public class UtenteDTO {
-	
+	private static final long serialVersionUID = 8777458183118839081L;
 	private int idUtente;
 	private String username;
-	private String password;
-	private List<Impasto> impasti;
-	
-	
-	public List<Impasto> getImpasti() {
-		return impasti;
+	private Set<PizzaDTO> listaPizze;
+
+	public Set<PizzaDTO> getListaPizze() {
+		return listaPizze;
 	}
 
-	public void setImpasti(List<Impasto> impasti) {
-		this.impasti = impasti;
+	public void setListaPizze(Set<PizzaDTO> listaPizze) {
+		this.listaPizze = listaPizze;
 	}
 
-	public UtenteDTO(){
+	public UtenteDTO() {
 	}
-	
+
 	public int getIdUtente() {
 		return idUtente;
 	}
@@ -44,17 +42,22 @@ public class UtenteDTO {
 		this.username = username;
 	}
 
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
 
 	public UtenteDTO(int idUtente, String username) {
-		this.idUtente=idUtente;
-		this.username=username;
-		
+		this.idUtente = idUtente;
+		this.username = username;
 	}
+	
+	public UtenteDTO(int idUtente, String username,Set<PizzaDTO> listaPizze) {
+		this.idUtente = idUtente;
+		this.username = username;
+		this.listaPizze=listaPizze;
+	}
+	public UtenteDTO(Utente utente) {
+        this.idUtente = utente.getId();
+        this.username = utente.getUsername();
+        this.listaPizze = utente.getPizze().stream()
+            .map(PizzaDTO::new)
+            .collect(Collectors.toSet());
+    }
 }

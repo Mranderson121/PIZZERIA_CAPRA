@@ -3,7 +3,6 @@ package com.pizzeria.model;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +12,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 @XmlRootElement
 @Entity
@@ -32,9 +28,7 @@ public class Impasto implements Serializable {
 	@Column(name = "nome", nullable = false)
 	private String nome;
 
-	@JsonManagedReference
-	@XmlTransient
-	@OneToMany(mappedBy = "impasto", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "impasto")
 	private Set<Pizza> pizze;
 
 	public int getIdImpasto() {

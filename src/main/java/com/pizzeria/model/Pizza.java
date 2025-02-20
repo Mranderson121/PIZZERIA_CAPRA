@@ -16,8 +16,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlTransient;
 
-import org.codehaus.jackson.annotate.JsonBackReference;
-
 @Entity
 @Table(name = "pizza")
 public class Pizza implements Serializable {
@@ -32,7 +30,6 @@ public class Pizza implements Serializable {
 	@Column(name = "nome", nullable = false)
 	private String nome;
 	
-	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name = "id_impasto", nullable = false)
 	private Impasto impasto;
@@ -45,7 +42,7 @@ public class Pizza implements Serializable {
 	
 	
 	@XmlTransient 
-	@OneToMany(fetch = FetchType.EAGER)
+	@OneToMany(fetch = FetchType.EAGER )
 	@JoinTable(name = "pizza_ingrediente", joinColumns = @JoinColumn(name = "id_pizza"), inverseJoinColumns = @JoinColumn(name = "id_ingrediente"))
 	private Set<Ingrediente> ingredienti;
 

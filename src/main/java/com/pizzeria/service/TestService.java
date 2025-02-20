@@ -3,6 +3,7 @@ package com.pizzeria.service;
 import java.util.List;
 import java.util.Set;
 
+import javax.ejb.EJB;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -22,6 +23,12 @@ import com.pizzeria.model.Utente;
 
 @Path("/pizzeria")
 public class TestService {
+	
+	@EJB
+    private Dao Dao;
+	@EJB
+	private DTODao DTODao;
+	
 	// Read di tutti gli ingredienti
 	@GET
 	@Path("/ingredienti")
@@ -41,7 +48,7 @@ public class TestService {
 	@GET
 	@Path("/impasti")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Set<ImpastoDTO> getAllImpasti() {
+	public List<ImpastoDTO> getAllImpasti() {
 		return DTODao.getAllImpasti(); // Metodo che recupera gli impasti dal database
 	}
 
@@ -66,7 +73,14 @@ public class TestService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public UtenteDTO getUtente(@PathParam("idUtente") int idUtente) {
 		int id = Integer.valueOf(idUtente);
-		return DTODao.getUtenteById(id);
+		return DTODao.getUtentePizze(id);
+	}
+	@GET
+	@Path("/utenti/{idUtente}/pizze")
+	@Produces(MediaType.APPLICATION_JSON)
+	public UtenteDTO getUtentePizze(@PathParam("idUtente") int idUtente) {
+		int id = Integer.valueOf(idUtente);
+		return DTODao.getUtentePizze(id);
 	}
 
 	@POST

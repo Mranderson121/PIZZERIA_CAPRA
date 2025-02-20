@@ -39,6 +39,6 @@ public class Ingrediente {
 
 	@Override
 	public String toString() {
-		return nome; // Supponendo che "nome" sia l'attributo del nome dell'ingrediente
+		return nome;
 	}
 }
