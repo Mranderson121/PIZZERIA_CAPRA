@@ -58,7 +58,7 @@
 
     <div class="login-container">
         <h2>Login Pizzeria</h2>
-        <form action="./LoginServlet" method="post">
+        <form th:action="@{/login}" method="post">
             <div class="mb-3">
                 <label for="username" class="form-label">Username:</label>
                 <input type="text" id="username" name="username" class="form-control" required>
@@ -69,9 +69,7 @@
             </div>
             <button type="submit">Login</button>
         </form>
-        <c:if test="${not empty errore}">
-            <p class="error">${errore}</p>
-        </c:if>
+        <p class="error" th:if="${errore}" th:text="${errore}"></p>
     </div>
 
 </body>

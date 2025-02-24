@@ -21,11 +21,11 @@ public class Ingrediente {
 	@Column(name = "nome")
 	private String nome;
 
-	public int getIdIngredientes() {
+	public int getIdIngrediente() {
 		return idIngrediente;
 	}
 
-	public void setIdIngredientes(int idIngrediente) {
+	public void setIdIngrediente(int idIngrediente) {
 		this.idIngrediente = idIngrediente;
 	}
 

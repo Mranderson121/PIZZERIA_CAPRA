@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -17,7 +16,6 @@ import com.pizzeria.model.Ingrediente;
 import com.pizzeria.model.Pizza;
 import com.pizzeria.model.Utente;
 
-@Stateless
 public class Dao {
 
 	@PersistenceContext

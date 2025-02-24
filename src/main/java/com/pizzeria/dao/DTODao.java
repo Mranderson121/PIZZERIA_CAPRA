@@ -2,7 +2,7 @@ package com.pizzeria.dao;
 
 import java.util.List;
 
-import javax.ejb.Stateless;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -12,7 +12,7 @@ import com.pizzeria.model.Impasto;
 import com.pizzeria.model.Utente;
 import com.pizzeria.dto.*;
 
-@Stateless
+
 public class DTODao {
 	
 	@PersistenceContext
