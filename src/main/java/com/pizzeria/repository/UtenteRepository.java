@@ -16,4 +16,5 @@ public interface UtenteRepository extends JpaRepository<Utente, Integer> {
     
     @Query("SELECT u FROM Utente u JOIN FETCH u.pizze WHERE u.id = :idUtente")
     Optional<Utente> findByIdWithPizze(@Param("idUtente") int idUtente);
+ 
 }
