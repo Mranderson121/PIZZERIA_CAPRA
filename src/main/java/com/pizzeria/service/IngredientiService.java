@@ -2,7 +2,6 @@ package com.pizzeria.service;
 
 import java.util.Set;
 
-import javax.ejb.EJB;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
@@ -12,7 +11,6 @@ import com.pizzeria.model.Ingrediente;
 @WebService
 public class IngredientiService {
 
-	@EJB
 	private Dao Dao;
 
 	@WebMethod
