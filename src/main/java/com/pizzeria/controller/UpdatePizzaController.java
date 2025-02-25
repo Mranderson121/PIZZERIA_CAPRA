@@ -27,7 +27,7 @@ import com.pizzeria.service.IngredienteService;
 import com.pizzeria.service.PizzaService;
 
 @Controller
-public class UpdatePizzaServlet {
+public class UpdatePizzaController {
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
