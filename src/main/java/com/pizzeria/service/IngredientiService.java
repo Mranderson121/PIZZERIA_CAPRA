@@ -5,43 +5,43 @@ import java.util.Set;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.pizzeria.dao.Dao;
+import com.pizzeria.dto.IngredienteDTO;
 import com.pizzeria.model.Ingrediente;
 
 @WebService
+@Component
 public class IngredientiService {
-
-	private Dao Dao;
+	@Autowired
+	private IngredienteService ingredienteService;
 
 	@WebMethod
 	public Set<Ingrediente> getIngredienti() {
-		return Dao.getAllIngredienti();
+		return ingredienteService.getAllIngredienti();	}
+
+	@WebMethod
+	public IngredienteDTO getIngredienteById(int idIngrediente) {
+		return ingredienteService.getIngredienteById(idIngrediente);
 	}
 
 	@WebMethod
-	public Ingrediente getIngredienteById(int idIngrediente) {
-		return Dao.getIngredienteById(idIngrediente);
+	public IngredienteDTO addIngrediente(IngredienteDTO ingrediente) {
+		return ingredienteService.addIngrediente(ingrediente);
 	}
 
 	@WebMethod
-	public Ingrediente addIngrediente(Ingrediente ingrediente) {
-		return Dao.addIngrediente(ingrediente);
-	}
+	public IngredienteDTO modificaIngrediente(int idIngrediente, IngredienteDTO ingrediente) {
+		return ingredienteService.modificaIngrediente(idIngrediente, ingrediente );
 
-	@WebMethod
-	public String modificaIngrediente(int idIngrediente, Ingrediente ingrediente) {
-		boolean modificatoIngrediente = Dao.modificaIngrediente(idIngrediente, ingrediente);
-
-		if (modificatoIngrediente) {
-			return "Ingrediente Modificato.";
-		} else {
-			return "Ingrediente non trovato o modifica fallita.";
-		}
+		
 	}
 
 	@WebMethod
 	public String eliminaIngrediente(int idIngrediente) {
-		boolean eliminaIngrediente = Dao.eliminaIngrediente(idIngrediente);
+		boolean eliminaIngrediente = ingredienteService.eliminaIngrediente(idIngrediente);
 
 		if (eliminaIngrediente) {
 			return "Ingrediente Eliminato";

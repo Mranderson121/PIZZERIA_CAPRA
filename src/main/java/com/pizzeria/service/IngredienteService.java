@@ -19,8 +19,6 @@ public class IngredienteService {
 
 	@Autowired
 	private IngredienteRepository ingredienteRepository;
-	@Autowired
-	private IngredienteService ingredienteService;
 
 	public Set<Ingrediente> getAllIngredienti() {
 		return new HashSet<>(ingredienteRepository.findAll());
