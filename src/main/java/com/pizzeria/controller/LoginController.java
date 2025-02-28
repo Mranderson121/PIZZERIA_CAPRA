@@ -5,7 +5,6 @@ import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
-import com.pizzeria.dao.Dao;
 import com.pizzeria.model.Impasto;
 import com.pizzeria.model.Ingrediente;
 import com.pizzeria.model.Pizza;

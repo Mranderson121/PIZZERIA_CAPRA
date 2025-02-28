@@ -8,7 +8,6 @@ import javax.jws.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.pizzeria.dao.Dao;
 import com.pizzeria.dto.IngredienteDTO;
 import com.pizzeria.model.Ingrediente;
 
@@ -20,7 +19,8 @@ public class IngredientiService {
 
 	@WebMethod
 	public Set<Ingrediente> getIngredienti() {
-		return ingredienteService.getAllIngredienti();	}
+		return ingredienteService.getAllIngredienti();
+	}
 
 	@WebMethod
 	public IngredienteDTO getIngredienteById(int idIngrediente) {
@@ -34,9 +34,8 @@ public class IngredientiService {
 
 	@WebMethod
 	public IngredienteDTO modificaIngrediente(int idIngrediente, IngredienteDTO ingrediente) {
-		return ingredienteService.modificaIngrediente(idIngrediente, ingrediente );
+		return ingredienteService.modificaIngrediente(idIngrediente, ingrediente);
 
-		
 	}
 
 	@WebMethod

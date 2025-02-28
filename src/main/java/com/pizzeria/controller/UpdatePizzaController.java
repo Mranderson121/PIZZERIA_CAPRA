@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
-import com.pizzeria.dao.Dao;
 import com.pizzeria.model.Ingrediente;
 import com.pizzeria.model.Pizza;
 import com.pizzeria.model.Utente;
