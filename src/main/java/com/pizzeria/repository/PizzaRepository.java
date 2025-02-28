@@ -10,10 +10,8 @@ import com.pizzeria.model.Utente;
 
 import java.util.List;
 
-
 @Repository
-public interface PizzaRepository extends JpaRepository<Pizza, Integer>{
+public interface PizzaRepository extends JpaRepository<Pizza, Integer> {
 	List<Pizza> findByUtente(Utente utente);
-	
 
 }

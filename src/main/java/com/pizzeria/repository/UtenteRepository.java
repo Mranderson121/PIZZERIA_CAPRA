@@ -10,11 +10,11 @@ import com.pizzeria.model.Utente;
 
 @Repository
 public interface UtenteRepository extends JpaRepository<Utente, Integer> {
-    
-    @Query("SELECT u FROM Utente u LEFT JOIN FETCH u.pizze WHERE u.username = :username AND u.password = :password")
-    Utente findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
-    
-    @Query("SELECT u FROM Utente u JOIN FETCH u.pizze WHERE u.id = :idUtente")
-    Optional<Utente> findByIdWithPizze(@Param("idUtente") int idUtente);
- 
+
+	@Query("SELECT u FROM Utente u LEFT JOIN FETCH u.pizze WHERE u.username = :username AND u.password = :password")
+	Utente findByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+
+	@Query("SELECT u FROM Utente u JOIN FETCH u.pizze WHERE u.id = :idUtente")
+	Optional<Utente> findByIdWithPizze(@Param("idUtente") int idUtente);
+
 }

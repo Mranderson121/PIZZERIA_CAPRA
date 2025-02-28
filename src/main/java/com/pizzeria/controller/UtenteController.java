@@ -28,56 +28,51 @@ public class UtenteController {
 	@Autowired
 	private UtenteService utenteService;
 
-
 	@GetMapping("/utente")
 	public Set<UtenteDTO> getAllUtenti() {
 		return utenteService.getAllUtenti().stream().map(utente -> new UtenteDTO(utente.getId(), utente.getUsername()))
 				.collect(Collectors.toSet());
 		// ci permette di convertire ogni utente trovato in un nuovo utenteDTO,
-		//per evitare i loop
+		// per evitare i loop
 	}
-	
-	
+
 	@GetMapping("/utente/{id}")
 	public ResponseEntity<UtenteDTO> getUtenteById(@PathVariable(value = "id") int idUtente) {
-	    Utente utente = utenteService.findUtenteById(idUtente); 
-	    if (utente != null) {
-	        Set<PizzaDTO> pizzaDTOs = utente.getPizze()
-	                .stream()
-	                .map(pizza -> new PizzaDTO(pizza.getIdPizza(), pizza.getNome()))
-	                .collect(Collectors.toSet());
+		Utente utente = utenteService.findUtenteById(idUtente);
+		if (utente != null) {
+			Set<PizzaDTO> pizzaDTOs = utente.getPizze().stream()
+					.map(pizza -> new PizzaDTO(pizza.getIdPizza(), pizza.getNome())).collect(Collectors.toSet());
 
-	        UtenteDTO utenteDTO = new UtenteDTO(utente.getId(), utente.getUsername(), pizzaDTOs);
-	        return ResponseEntity.ok(utenteDTO);
-	    } else {
-	        return ResponseEntity.notFound().build();
-	    }
+			UtenteDTO utenteDTO = new UtenteDTO(utente.getId(), utente.getUsername(), pizzaDTOs);
+			return ResponseEntity.ok(utenteDTO);
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
-	
+
 	@PostMapping("/utente/addUtente")
 	public ResponseEntity<Utente> addUtente(@RequestBody Utente utente) {
-		Utente nuovoUtente= utenteService.addUtente(utente);
+		Utente nuovoUtente = utenteService.addUtente(utente);
 		return ResponseEntity.ok(nuovoUtente);
 	}
+
 	@PutMapping("/utente/{id}")
-	public ResponseEntity<UtenteDTO> modificaUtente(@RequestBody Utente utente,@PathVariable(value = "id") int idUtente){
-		Utente modificaUtente= utenteService.modificaUtente(utente,idUtente);
-		 UtenteDTO utenteDTO = new UtenteDTO(modificaUtente.getId(), modificaUtente.getUsername());
-		    // Restituisci il DTO come risposta
-		    return ResponseEntity.ok(utenteDTO);
+	public ResponseEntity<UtenteDTO> modificaUtente(@RequestBody Utente utente,
+			@PathVariable(value = "id") int idUtente) {
+		Utente modificaUtente = utenteService.modificaUtente(utente, idUtente);
+		UtenteDTO utenteDTO = new UtenteDTO(modificaUtente.getId(), modificaUtente.getUsername());
+		// Restituisci il DTO come risposta
+		return ResponseEntity.ok(utenteDTO);
 	}
-	
+
 	@DeleteMapping("/eliminaUtente/{id}")
-	public ResponseEntity<?> eliminaUtente(@PathVariable(value="id") int idUtente){
-		Boolean eliminaUtente= utenteService.eliminaUtente(idUtente);
-		if(!eliminaUtente) {
+	public ResponseEntity<?> eliminaUtente(@PathVariable(value = "id") int idUtente) {
+		Boolean eliminaUtente = utenteService.eliminaUtente(idUtente);
+		if (!eliminaUtente) {
 			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.ok().build();
-		
-	}
-	
-	
 
+	}
 
 }

@@ -1,115 +1,165 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Pizzeria Dashboard</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .error-message { color: red; margin-bottom: 10px; font-weight: bold; }
-        .table-container { display: flex; justify-content: space-between; margin-bottom: 20px; }
-        table { border-collapse: collapse; width: 48%; margin-bottom: 20px; }
-        table, th, td { border: 1px solid #ddd; }
-        th, td { padding: 8px; text-align: left; }
-        th { background-color: #f4f4f4; }
-        .form-container { margin-bottom: 20px; }
-        .form-container input[type="text"] { padding: 5px; margin-right: 10px; }
-        .form-container button { padding: 5px 10px; cursor: pointer; }
-    </style>
+<meta charset="UTF-8">
+<title>Pizzeria Dashboard</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 20px;
+}
+
+.error-message {
+	color: red;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+.table-container {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 48%;
+	margin-bottom: 20px;
+}
+
+table, th, td {
+	border: 1px solid #ddd;
+}
+
+th, td {
+	padding: 8px;
+	text-align: left;
+}
+
+th {
+	background-color: #f4f4f4;
+}
+
+.form-container {
+	margin-bottom: 20px;
+}
+
+.form-container input[type="text"] {
+	padding: 5px;
+	margin-right: 10px;
+}
+
+.form-container button {
+	padding: 5px 10px;
+	cursor: pointer;
+}
+</style>
 </head>
 <body>
 
-    <h1>Gestione Pizzeria</h1>
+	<h1>Gestione Pizzeria</h1>
 
-    <div class="form-container">
-        <h2>Benvenuto, <span th:text="${utenteLoggato.username}"></span></h2>
-        <a href="/logout"><button type="button">Esci</button></a>
-    </div>
+	<div class="form-container">
+		<h2>
+			Benvenuto, <span th:text="${utenteLoggato.username}"></span>
+		</h2>
+		<a href="/logout"><button type="button">Esci</button></a>
+	</div>
 
-    <div th:if="${errorMessage}" class="error-message" th:text="${errorMessage}"></div>
+	<div th:if="${errorMessage}" class="error-message"
+		th:text="${errorMessage}"></div>
 
-    <form action="/dashboard" method="post">
-        <div class="table-container">
+	<form action="/dashboard" method="post">
+		<div class="table-container">
 
-            <table>
-                <caption><strong>Lista Impasti</strong></caption>
-                <thead>
-                    <tr>
-                        <th>Nome Impasto</th>
-                        <th>Seleziona</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="impasto : ${impasti}">
-                        <td th:text="${impasto.nome}"></td>
-                        <td><input type="radio" name="impastoId" th:value="${impasto.idImpasto}" required /></td>
-                    </tr>
-                    <tr th:if="${impasti.isEmpty()}">
-                        <td colspan="2">Nessun impasto disponibile.</td>
-                    </tr>
-                </tbody>
-            </table>
+			<table>
+				<caption>
+					<strong>Lista Impasti</strong>
+				</caption>
+				<thead>
+					<tr>
+						<th>Nome Impasto</th>
+						<th>Seleziona</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="impasto : ${impasti}">
+						<td th:text="${impasto.nome}"></td>
+						<td><input type="radio" name="impastoId"
+							th:value="${impasto.idImpasto}" required /></td>
+					</tr>
+					<tr th:if="${impasti.isEmpty()}">
+						<td colspan="2">Nessun impasto disponibile.</td>
+					</tr>
+				</tbody>
+			</table>
 
-            <table>
-                <caption><strong>Lista Ingredienti</strong></caption>
-                <thead>
-                    <tr>
-                        <th>Nome Ingrediente</th>
-                        <th>Seleziona</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr th:each="ingrediente : ${ingredienti}">
-                        <td th:text="${ingrediente.nome}"></td>
-                        <td><input type="checkbox" name="ingredientiId" th:value="${ingrediente.idIngrediente}" /></td>
-                    </tr>
-                    <tr th:if="${ingredienti.isEmpty()}">
-                        <td colspan="2">Nessun ingrediente disponibile.</td>
-                    </tr>
-                </tbody> 
-            </table>
+			<table>
+				<caption>
+					<strong>Lista Ingredienti</strong>
+				</caption>
+				<thead>
+					<tr>
+						<th>Nome Ingrediente</th>
+						<th>Seleziona</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="ingrediente : ${ingredienti}">
+						<td th:text="${ingrediente.nome}"></td>
+						<td><input type="checkbox" name="ingredientiId"
+							th:value="${ingrediente.idIngrediente}" /></td>
+					</tr>
+					<tr th:if="${ingredienti.isEmpty()}">
+						<td colspan="2">Nessun ingrediente disponibile.</td>
+					</tr>
+				</tbody>
+			</table>
 
-        </div>
+		</div>
 
-        <div class="form-container">
-            <label for="pizzaName">Nome Pizza:</label>
-            <input type="text" id="pizzaName" name="pizzaName" placeholder="Inserisci il nome della pizza" required>
-        </div>
+		<div class="form-container">
+			<label for="pizzaName">Nome Pizza:</label> <input type="text"
+				id="pizzaName" name="pizzaName"
+				placeholder="Inserisci il nome della pizza" required>
+		</div>
 
-        <div class="form-container">
-            <button type="submit">Crea Pizza</button>
-        </div>
-    </form>
+		<div class="form-container">
+			<button type="submit">Crea Pizza</button>
+		</div>
+	</form>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Nome Pizza</th>
-                <th>Tipo Impasto</th>
-                <th>Ingredienti</th>
-                <th>Azioni</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="pizza : ${pizze}">
-                <td th:text="${pizza.nome}"></td>
-                <td th:text="${pizza.impasto.nome}"></td>
-                <td th:text="${pizza.ingredienti}"></td>
-                <td>
-                    <form action="/eliminaPizza" method="post" style="display: inline;">
-                        <input type="hidden" name="pizzaId" th:value="${pizza.idPizza}">
-                        <button type="submit">Elimina</button>
-                    </form>
-                    <form action="/modificaPizza" method="post" style="display: inline;">
-                		<input type ="hidden" name="pizzaId" th:value="${pizza.idPizza}">
-                		<button type="submit">Modifica</button>
-                	</form>
-                </td>
-            </tr>
-            <tr th:if="${pizze.isEmpty()}">
-                <td colspan="3">Non hai ancora creato una Pizza</td>
-            </tr>
-        </tbody>
-    </table>
+	<table>
+		<thead>
+			<tr>
+				<th>Nome Pizza</th>
+				<th>Tipo Impasto</th>
+				<th>Ingredienti</th>
+				<th>Azioni</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="pizza : ${pizze}">
+				<td th:text="${pizza.nome}"></td>
+				<td th:text="${pizza.impasto.nome}"></td>
+				<td th:text="${pizza.ingredienti}"></td>
+				<td>
+					<form action="/eliminaPizza" method="post" style="display: inline;">
+						<input type="hidden" name="pizzaId" th:value="${pizza.idPizza}">
+						<button type="submit">Elimina</button>
+					</form>
+					<form action="/modificaPizza" method="post"
+						style="display: inline;">
+						<input type="hidden" name="pizzaId" th:value="${pizza.idPizza}">
+						<button type="submit">Modifica</button>
+					</form>
+				</td>
+			</tr>
+			<tr th:if="${pizze.isEmpty()}">
+				<td colspan="3">Non hai ancora creato una Pizza</td>
+			</tr>
+		</tbody>
+	</table>
 
 </body>
 </html>
