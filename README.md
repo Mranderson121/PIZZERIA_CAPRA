@@ -51,9 +51,4 @@ Sistema gestionale per una pizzeria con funzionalità di CRUD sugli ordini, ingr
 - Profilazione tramite branch (es. `springboot`, `datasource`, `soap-adapter`)
 - Utilizzo di un server locale (Tomcat o WildFly) per il deploy dei WAR
 
----
-
-## 🧪 Esempi di Endpoint
-
-### 🌐 REST - Ricerca Ordini
 
